@@ -14,6 +14,7 @@ declare module "@xinhua/snapdom" {
     quality?: number;
     useProxy?: string;
     exclude?: string[];
+    includeFontFamilies?: string[];
     filter?: (element: Element, originalElement: Element) => boolean;
   }
 

@@ -100,7 +100,7 @@ export function deepClone(node, compress, options = {}, originalRoot) {
     cache.preNodeMap.set(img, node);
     // debugger;
     inlineAllStyles(node, img, compress);
-    console.log("[Snapdom] Converted canvas to image", img);
+    // console.log("[Snapdom] Converted canvas to image", img);
     return img;
   }
 

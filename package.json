@@ -1,9 +1,9 @@
 {
   "name": "@xinhua/snapdom",
-  "version": "1.9.9",
+  "version": "2.0.0",
   "description": "snapDOM captures HTML elements to images with exceptional speed and accuracy.",
   "main": "dist/snapdom.js",
-  "module": "dist/snapdom.mjs",
+  "module": "dist/snapdom.min.mjs",
   "scripts": {
     "test": "npx vitest run --browser.headless --reporter=verbose",
     "test:benchmark": "npx vitest bench --browser.headless --watch=false",
