@@ -1,4 +1,4 @@
-declare module "@zumer/snapdom" {
+declare module "@xinhua/snapdom" {
   export interface SnapOptions {
     compress?: boolean;
     embedFonts?: boolean;
@@ -39,15 +39,39 @@ declare module "@zumer/snapdom" {
   ): Promise<SnapResult>;
 
   export namespace snapdom {
-    function capture(element: HTMLElement, options?: SnapOptions): Promise<SnapResult>;
-    function toRaw(element: HTMLElement, options?: SnapOptions): Promise<string>;
-    function toImg(element: HTMLElement, options?: SnapOptions): Promise<HTMLImageElement>;
-    function toCanvas(element: HTMLElement, options?: SnapOptions): Promise<HTMLCanvasElement>;
+    function capture(
+      element: HTMLElement,
+      options?: SnapOptions
+    ): Promise<SnapResult>;
+    function toRaw(
+      element: HTMLElement,
+      options?: SnapOptions
+    ): Promise<string>;
+    function toImg(
+      element: HTMLElement,
+      options?: SnapOptions
+    ): Promise<HTMLImageElement>;
+    function toCanvas(
+      element: HTMLElement,
+      options?: SnapOptions
+    ): Promise<HTMLCanvasElement>;
     function toBlob(element: HTMLElement, options?: SnapOptions): Promise<Blob>;
-    function toPng(element: HTMLElement, options?: SnapOptions): Promise<HTMLImageElement>;
-    function toJpg(element: HTMLElement, options?: SnapOptions): Promise<HTMLImageElement>;
-    function toWebp(element: HTMLElement, options?: SnapOptions): Promise<HTMLImageElement>;
-    function download(element: HTMLElement, options?: SnapOptions): Promise<void>;
+    function toPng(
+      element: HTMLElement,
+      options?: SnapOptions
+    ): Promise<HTMLImageElement>;
+    function toJpg(
+      element: HTMLElement,
+      options?: SnapOptions
+    ): Promise<HTMLImageElement>;
+    function toWebp(
+      element: HTMLElement,
+      options?: SnapOptions
+    ): Promise<HTMLImageElement>;
+    function download(
+      element: HTMLElement,
+      options?: SnapOptions
+    ): Promise<void>;
   }
 
   /**

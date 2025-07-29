@@ -1,9 +1,9 @@
 {
-  "name": "@zumer/snapdom",
-  "version": "1.9.6",
+  "name": "@xinhua/snapdom",
+  "version": "1.9.9",
   "description": "snapDOM captures HTML elements to images with exceptional speed and accuracy.",
   "main": "dist/snapdom.js",
-  "module": "dist/index.js",
+  "module": "dist/snapdom.mjs",
   "scripts": {
     "test": "npx vitest run --browser.headless --reporter=verbose",
     "test:benchmark": "npx vitest bench --browser.headless --watch=false",
@@ -12,8 +12,7 @@
     "compile": "npm run compile-browser && npm run compile-esm",
     "build": "npm run compile && npm pack",
     "bump:dry": "npx @zumerbox/bump -d",
-    "bump": "npx @zumerbox/bump && npx @zumerbox/changelog",
-    "prebuild": "git add CHANGELOG.md && git commit -m \"Bumped version\" && git push --follow-tags"
+    "bump": "npx @zumerbox/bump && npx @zumerbox/changelog"
   },
   "repository": {
     "type": "git",
