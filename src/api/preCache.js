@@ -1,7 +1,12 @@
-import { getStyle, inlineSingleBackgroundEntry, fetchImage, splitBackgroundImage } from '../utils/helpers.js';
-import { embedCustomFonts } from '../modules/fonts.js';
-import { precacheCommonTags } from '../utils/cssTools.js';
-import { cache } from '../core/cache.js';
+import {
+  getStyle,
+  inlineSingleBackgroundEntry,
+  fetchImage,
+  splitBackgroundImage,
+} from "../utils/helpers.js";
+import { embedCustomFonts } from "../modules/fonts.js";
+import { precacheCommonTags } from "../utils/cssTools.js";
+import { cache } from "../core/cache.js";
 
 /**
  * Preloads images, background images, and optionally fonts into cache before DOM capture.
@@ -12,14 +17,19 @@ import { cache } from '../core/cache.js';
  */
 
 export async function preCache(root = document, options = {}) {
-  const { embedFonts = true, reset = false} = options;
+  const {
+    embedFonts = true,
+    reset = false,
+    includeFontFamilies = [],
+  } = options;
   if (reset) {
-    cache.reset()
+    cache.reset();
     return;
   }
-  await document.fonts.ready;
+  // await document.fonts.ready;
   precacheCommonTags();
-  let imgEls = [], allEls = [];
+  let imgEls = [],
+    allEls = [];
   if (root?.querySelectorAll) {
     imgEls = Array.from(root.querySelectorAll("img[src]"));
     allEls = Array.from(root.querySelectorAll("*"));
@@ -28,10 +38,10 @@ export async function preCache(root = document, options = {}) {
   for (const img of imgEls) {
     const src = img.src;
     if (!cache.image.has(src)) {
-    
       promises.push(
-        fetchImage(src, { useProxy: options.useProxy}).then((dataURL) => cache.image.set(src, dataURL)).catch(() => {
-        })
+        fetchImage(src, { useProxy: options.useProxy })
+          .then((dataURL) => cache.image.set(src, dataURL))
+          .catch(() => {})
       );
     }
   }
@@ -43,15 +53,14 @@ export async function preCache(root = document, options = {}) {
         const isUrl = entry.startsWith("url(");
         if (isUrl) {
           promises.push(
-            inlineSingleBackgroundEntry(entry, options).catch(() => {
-            })
+            inlineSingleBackgroundEntry(entry, options).catch(() => {})
           );
         }
       }
     }
   }
   if (embedFonts) {
-    await embedCustomFonts({ preCached: true });
+    await embedCustomFonts({ preCached: true, includeFontFamilies });
   }
   await Promise.all(promises);
 }

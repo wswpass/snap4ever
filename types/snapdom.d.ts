@@ -83,6 +83,7 @@ declare module "@xinhua/snapdom" {
     options?: {
       embedFonts?: boolean;
       useProxy?: string;
+      includeFontFamilies?: string[];
     }
   ): Promise<void>;
 }
