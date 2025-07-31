@@ -290,9 +290,9 @@ export async function embedCustomFonts({
       };}`;
     }
   }
-
+  debugger;
   if (finalCSS) {
-    cache.resource.set("fonts-embed-css", finalCSS);
+    // cache.resource.set("fonts-embed-css", finalCSS);
     if (preCached) {
       const style = document.createElement("style");
       style.setAttribute("data-snapdom", "embedFonts");

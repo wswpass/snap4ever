@@ -1,6 +1,6 @@
 {
   "name": "@xinhua/snapdom",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "snapDOM captures HTML elements to images with exceptional speed and accuracy.",
   "main": "dist/snapdom.js",
   "module": "dist/snapdom.min.mjs",
