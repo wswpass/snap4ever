@@ -3,7 +3,7 @@
   "version": "2.0.3",
   "description": "snapDOM captures HTML elements to images with exceptional speed and accuracy.",
   "main": "dist/snapdom.js",
-  "module": "dist/snapdom.min.mjs",
+  "module": "src/index.js",
   "scripts": {
     "test": "npx vitest run --browser.headless --reporter=verbose",
     "test:benchmark": "npx vitest bench --browser.headless --watch=false",

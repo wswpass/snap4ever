@@ -86,17 +86,22 @@ export function getStyle(el, pseudo = null) {
  */
 export function parseContent(content) {
   let clean = content.replace(/^['"]|['"]$/g, "");
-  if (clean.startsWith("\\")) {
-    try {
-      return String.fromCharCode(parseInt(clean.replace("\\", ""), 16));
-    } catch {
-      return clean;
-    }
-  }
-  console.log("[SnapDOM - parseContent]", clean);
   if (clean.includes("\\a")) {
-    return clean.replace(/\\a\s/g, "\n");
+    clean = clean.replace(/\\a\s/g, "\n");
   }
+  clean = clean.replace(/\\/g, "");
+  // debugger;
+  // if (clean.startsWith("\\")) {
+  //   try {
+  //     return String.fromCharCode(parseInt(clean.replace("\\", ""), 16));
+  //   } catch {
+  //     return clean;
+  //   }
+  // }
+  console.log("[SnapDOM - parseContent] pre", clean);
+  // clean = clean.replace("'", "\\'").replace('"', '\\"');
+  // console.log("[SnapDOM - parseContent] after", clean);
+
   return clean;
 }
 /**
