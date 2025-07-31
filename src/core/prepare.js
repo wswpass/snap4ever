@@ -3,12 +3,12 @@
  * @module prepare
  */
 
-import { generateCSSClasses} from '../utils/cssTools.js';
-import { stripTranslate} from '../utils/helpers.js';
-import { deepClone } from './clone.js';
-import { inlinePseudoElements } from '../modules/pseudo.js';
-import { inlineExternalDef } from '../modules/svgDefs.js';
-import { cache } from '../core/cache.js';
+import { generateCSSClasses } from "../utils/cssTools.js";
+import { stripTranslate } from "../utils/helpers.js";
+import { deepClone } from "./clone.js";
+import { inlinePseudoElements } from "../modules/pseudo.js";
+import { inlineExternalDef } from "../modules/svgDefs.js";
+import { cache } from "../core/cache.js";
 
 /**
  * Prepares a clone of an element for capture, inlining pseudo-elements and generating CSS classes.
@@ -22,10 +22,14 @@ import { cache } from '../core/cache.js';
  * @returns {Promise<Object>} Object containing the clone, generated CSS, and style cache
  */
 
-export async function prepareClone(element, compress = false, embedFonts = false, options = {}) {
-
-  let clone
-  let classCSS = '';
+export async function prepareClone(
+  element,
+  compress = false,
+  embedFonts = false,
+  options = {}
+) {
+  let clone;
+  let classCSS = "";
   try {
     clone = deepClone(element, compress, options, element);
   } catch (e) {
@@ -33,7 +37,13 @@ export async function prepareClone(element, compress = false, embedFonts = false
     throw e;
   }
   try {
-    await inlinePseudoElements(element, clone, compress, embedFonts, options.useProxy);
+    await inlinePseudoElements(
+      element,
+      clone,
+      compress,
+      embedFonts,
+      options.useProxy
+    );
   } catch (e) {
     console.warn("inlinePseudoElements failed:", e);
   }
@@ -44,7 +54,9 @@ export async function prepareClone(element, compress = false, embedFonts = false
   }
   if (compress) {
     const keyToClass = generateCSSClasses();
-    classCSS = Array.from(keyToClass.entries()).map(([key, className]) => `.${className}{${key}}`).join("");
+    classCSS = Array.from(keyToClass.entries())
+      .map(([key, className]) => `.${className}{${key}}`)
+      .join("");
     for (const [node, key] of cache.preStyleMap.entries()) {
       if (node.tagName === "STYLE") continue;
       const className = keyToClass.get(key);
@@ -79,7 +91,8 @@ export async function prepareClone(element, compress = false, embedFonts = false
     }
   }
   if (element === cache.preNodeMap.get(clone)) {
-    const computed = cache.preStyle.get(element) || window.getComputedStyle(element);
+    const computed =
+      cache.preStyle.get(element) || window.getComputedStyle(element);
     cache.preStyle.set(element, computed);
     const transform = stripTranslate(computed.transform);
     clone.style.margin = "0";

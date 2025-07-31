@@ -140,11 +140,16 @@ export async function captureDOM(element, options = {}) {
         }
         const svgNS = "http://www.w3.org/2000/svg";
         const fo = document.createElementNS(svgNS, "foreignObject");
+        // fo.attachShadow({ mode: "closed" });
         fo.setAttribute("width", "100%");
         fo.setAttribute("height", "100%");
         const styleTag = document.createElement("style");
         styleTag.textContent =
-          baseCSS + fontsCSS + "svg{overflow:visible;}" + classCSS;
+          baseCSS +
+          fontsCSS +
+          "svg{overflow:visible;}" +
+          classCSS +
+          "*::after {content: none !important;display: none !important;background: none !important;border: none !important;box-shadow: none !important;}";
         fo.appendChild(styleTag);
         fo.appendChild(clone);
         const serializer = new XMLSerializer();
