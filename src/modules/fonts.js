@@ -290,7 +290,7 @@ export async function embedCustomFonts({
       };}`;
     }
   }
-  debugger;
+  // debugger;
   if (finalCSS) {
     // cache.resource.set("fonts-embed-css", finalCSS);
     if (preCached) {

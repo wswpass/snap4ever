@@ -150,7 +150,7 @@ export function isIconFont(familyOrUrl) {
  * @return {*}
  */
 
-export function fetchImage(src, { timeout = 3000, useProxy = "" } = {}) {
+export function fetchImage(src, { timeout = 30000, useProxy = "" } = {}) {
   function getCrossOriginMode(url) {
     try {
       const parsed = new URL(url, window.location.href);

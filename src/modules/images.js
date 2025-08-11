@@ -3,7 +3,7 @@
  * @module images
  */
 
-import { fetchImage } from '../utils/helpers.js';
+import { fetchImage } from "../utils/helpers.js";
 
 /**
  * Converts all <img> elements in the clone to data URLs or replaces them with placeholders if loading fails.
@@ -21,9 +21,14 @@ export async function inlineImages(clone, options = {}) {
       img.src = dataUrl;
       if (!img.width) img.width = img.naturalWidth || 100;
       if (!img.height) img.height = img.naturalHeight || 100;
-    } catch {
+    } catch (error) {
+      console.error(error.message);
       const fallback = document.createElement("div");
-      fallback.style = `width: ${img.width || 100}px; height: ${img.height || 100}px; background: #ccc; display: inline-block; text-align: center; line-height: ${img.height || 100}px; color: #666; font-size: 12px;`;
+      fallback.style = `width: ${img.width || 100}px; height: ${
+        img.height || 100
+      }px; background: #ccc; display: inline-block; text-align: center; line-height: ${
+        img.height || 100
+      }px; color: #666; font-size: 12px;`;
       fallback.innerText = "img";
       img.replaceWith(fallback);
     }
